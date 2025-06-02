@@ -6,8 +6,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post('/validar-cpf', async (req, res) => {
-    const { cpf } = req.body;
+// 🔥 ROTA BRABA DE CONSULTA CPF VIA GET
+app.get('/validar-cpf', async (req, res) => {
+    const cpf = req.query.cpf;
     if (!cpf) {
         return res.status(400).json({ error: 'CPF não informado' });
     }
@@ -27,6 +28,7 @@ app.post('/validar-cpf', async (req, res) => {
     }
 });
 
+// 🔥 PORTA DO CRIME
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`🔥 Servidor rodando na porta ${port}, DESGRAÇA!`);
